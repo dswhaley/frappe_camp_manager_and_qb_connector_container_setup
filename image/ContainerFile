@@ -137,6 +137,7 @@ FROM base AS backend
 USER frappe
 
 COPY --from=builder --chown=frappe:frappe /home/frappe/frappe-bench /home/frappe/frappe-bench
+COPY Procfile /home/frappe/frappe-bench/Procfile
 
 WORKDIR /home/frappe/frappe-bench
 
