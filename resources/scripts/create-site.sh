@@ -19,9 +19,9 @@ done
 echo "sites/common_site_config.json found with required keys" >> /tmp/create-site.log
 echo "Creating new site with bench" >> /tmp/create-site.log
 bench new-site frontend \
-  --db-name "$DB_NAME" \
-  --db-user "$DB_USER" \
+  --db-root-username "$DB_USER" \
   --db-password "$DB_PASSWORD" \
+  --db-root-password "$DB_PASSWORD" \
   --db-host "$DB_HOST" \
   --db-port "$DB_PORT" \
   --admin-password "$ADMIN_PASSWORD" \
@@ -30,4 +30,5 @@ bench --site frontend set-config developer_mode 1
 bench --site frontend set-config scheduler_enabled 1
 bench --site frontend install-app qb_connector >> /tmp/create-site.log
 bench --site frontend install-app camp_manager >> /tmp/create-site.log
+bench --site frontend migrate >> /tmp/create-site.log
 echo "Site creation completed successfully" >> /tmp/create-site.log
