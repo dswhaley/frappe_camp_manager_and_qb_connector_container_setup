@@ -14,4 +14,4 @@ cd /home/frappe/frappe-bench/sites
   --worker-tmp-dir=/dev/shm \
   --timeout=120 \
   --preload \
-  frappe.app:application >> /tmp/backend.log 2>&1
+  frappe.app:application 
