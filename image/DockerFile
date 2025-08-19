@@ -146,23 +146,14 @@ USER frappe
 
 COPY --from=builder --chown=frappe:frappe /home/frappe/frappe-bench /home/frappe/frappe-bench
 COPY Procfile /home/frappe/frappe-bench/Procfile
-# COPY config/redis_cache.conf /home/frappe/frappe-bench/config/redis_cache.conf
-# COPY config/redis_queue.conf /home/frappe/frappe-bench/config/redis_queue.conf
 
 COPY resources/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY resources/scripts /home/frappe/frappe-bench/scripts
 
 USER root
-RUN chmod +x /home/frappe/frappe-bench/scripts/configurator.sh
-RUN chmod +x /home/frappe/frappe-bench/scripts/create-site.sh
-RUN chmod +x /home/frappe/frappe-bench/scripts/backend.sh
-RUN chmod +x /home/frappe/frappe-bench/scripts/qb_connector.sh
-RUN chmod +x /home/frappe/frappe-bench/scripts/queue-long.sh
-RUN chmod +x /home/frappe/frappe-bench/scripts/queue-short.sh
-RUN chmod +x /home/frappe/frappe-bench/scripts/scheduler.sh
-RUN chmod +x /home/frappe/frappe-bench/scripts/websocket.sh
-RUN chmod 644 /etc/supervisor/conf.d/supervisord.conf
-
+RUN find /home/frappe/frappe-bench/scripts -name "*.sh" -exec dos2unix {} \; \
+    && chmod +x /home/frappe/frappe-bench/scripts/*.sh \
+    && chmod 644 /etc/supervisor/conf.d/supervisord.conf
 USER frappe
 
 WORKDIR /home/frappe/frappe-bench/apps/qb_connector/ts_qbo_client
