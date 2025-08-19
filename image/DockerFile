@@ -146,8 +146,8 @@ USER frappe
 
 COPY --from=builder --chown=frappe:frappe /home/frappe/frappe-bench /home/frappe/frappe-bench
 COPY Procfile /home/frappe/frappe-bench/Procfile
-COPY config/redis_cache.conf /home/frappe/frappe-bench/config/redis_cache.conf
-COPY config/redis_queue.conf /home/frappe/frappe-bench/config/redis_queue.conf
+# COPY config/redis_cache.conf /home/frappe/frappe-bench/config/redis_cache.conf
+# COPY config/redis_queue.conf /home/frappe/frappe-bench/config/redis_queue.conf
 
 COPY resources/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY resources/scripts /home/frappe/frappe-bench/scripts
