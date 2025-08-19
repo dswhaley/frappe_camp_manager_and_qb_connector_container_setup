@@ -37,6 +37,9 @@ services:
       SALES_TAX_STATE: ${SALES_TAX_STATE}
       DISCOUNT_ID: ${DISCOUNT_ID}
       QBO_DEPOSIT_ACCOUNT_NAME: ${QBO_DEPOSIT_ACCOUNT_NAME}
+
+      # Redis
+      SOCKETIO_PORT: ${SOCKETIO_PORT}
     depends_on:
       - db
     volumes:
